@@ -1,21 +1,28 @@
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  margin: bottom 20px;
 }
+
+/* =========================================================
+   FULL SCREEN
+========================================================= */
 
 html,
 body,
 #root {
   width: 100%;
   height: 100%;
-  min-height: 100%;
   margin: 0;
   padding: 0;
+
   overflow: hidden;
-  position: fixed;
-  inset: 0;
-  touch-action: none;
+
   overscroll-behavior: none;
 }
 
@@ -25,91 +32,136 @@ body {
 }
 
 /* =========================================================
-   MAIN VIEWPORT
+   MAIN PAGE
 ========================================================= */
 
 .plant-page {
+  position: relative;
+
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  position: relative;
-  overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
   background:
     radial-gradient(
       circle at 50% 50%,
-      #061c27 0%,
-      #080416 35%,
-      #000 75%
+      #04101a 0%,
+      #05030d 45%,
+      #000 80%
     );
 }
 
 /* =========================================================
    THREE.JS
+   FULL SCREEN
 ========================================================= */
 
 .three-background {
   position: absolute;
+
   inset: 0;
+
+  width: 100%;
+  height: 100%;
+
   z-index: 1;
+
   pointer-events: none;
+
   overflow: hidden;
 }
 
 .three-background canvas {
   width: 100% !important;
   height: 100% !important;
+
   display: block;
 }
 
 /* =========================================================
-   PLANT CONTAINER & SVG
+   SVG PLANT
 ========================================================= */
 
-.plant-container {
+.plant-svg {
   position: absolute;
+
   left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
+  top: 50%;
 
-  width: 100%;
-  max-width: min(540px, 90vw);
-  height: 92vh;
-  height: 92dvh;
-  max-height: 92dvh;
+  width: min(90vw, 700px);
 
-  z-index: 5;
+  height: 100vh;
+  height: 100dvh;
 
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  transform: translate(-50%, -50%);
+
+  z-index: 2;
+
+  overflow: visible;
 
   pointer-events: none;
-  box-sizing: border-box;
-}
-
-.plant-svg {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  display: block;
-
-  filter:
-    drop-shadow(0 0 3px rgba(70, 220, 255, 0.2));
 }
 
 /* =========================================================
-   SVG GLOW
+   FLOWER
+========================================================= */
+
+.flower {
+  transform-box: fill-box;
+}
+
+.flower-hover {
+  transform-box: fill-box;
+
+  pointer-events: all;
+
+  transform-origin: center;
+}
+
+.flower-hit {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+/* =========================================================
+   BACKGROUND GLOW
 ========================================================= */
 
 .background-glow {
-  opacity: 0.65;
+  opacity: 0.6;
 }
 
-.ground-glow {
-  transform-origin: center;
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .plant-svg {
+    width: 100vw;
+    height: 100dvh;
+  }
+
+}
+
+@media (max-height: 700px) {
+
+  .plant-svg {
+    width: min(85vw, 580px);
+    height: 100dvh;
+  }
+
+}
+
+@media (min-width: 1400px) {
+
+  .plant-svg {
+    width: min(75vw, 760px);
+  }
+
 }
